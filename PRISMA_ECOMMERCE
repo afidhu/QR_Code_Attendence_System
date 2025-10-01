@@ -1,0 +1,268 @@
+type: collection.insomnia.rest/5.0
+name: Prisma-E-commerce
+meta:
+  id: wrk_0e6118b0a9ea47ac9555e568c1f6bd49
+  created: 1758134234959
+  modified: 1758134234959
+  description: ""
+collection:
+  - name: auths
+    meta:
+      id: fld_30f10bf580794461aeb36d16723bbae9
+      created: 1758134269380
+      modified: 1758134285775
+      sortKey: -1758134269380
+      description: ""
+    children:
+      - url: http://localhost:5000/auth/login
+        name: http://localhost:5000/auth/login
+        meta:
+          id: req_bfdc64507112471d853ecd99c506affb
+          created: 1758134287985
+          modified: 1758191039484
+          isPrivate: false
+          description: ""
+          sortKey: -1758134287985
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                            "email":"juma@gmail.com",
+                            "password":"juma123"   
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/auth/register
+        name: http://localhost:5000/auth/register
+        meta:
+          id: req_7cad911030ac4b688989970c80f17fbe
+          created: 1758134319560
+          modified: 1758191033342
+          isPrivate: false
+          description: ""
+          sortKey: -1758134319560
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                            "email":"asha@gmail.com",
+                            "name":"asha",
+                            "password":"asha"   
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/auth/varify
+        name: http://localhost:5000/auth/varify
+        meta:
+          id: req_0e11a563fc4e4a60a68f8dd49f6c917c
+          created: 1758141168517
+          modified: 1758223177884
+          isPrivate: false
+          description: ""
+          sortKey: -1758141168517
+        method: GET
+        headers:
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoianVtYUBnbWFpbC5jb20iLCJpYXQiOjE3NTgyMjMxNTMsImV4cCI6MTc1ODIyNjc1M30.V6AncT8Jp1hItVGT9Vxh0x5kGExw3bPSR4_YfkQzvRg
+            id: pair_58c7ba87d0bd4ac7b0fef40348fdefb4
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: calculations
+    meta:
+      id: fld_6992023b83cf48aa8b21cede6283641e
+      created: 1758181397115
+      modified: 1758181397115
+      sortKey: -1758181397115
+      description: ""
+    children:
+      - url: http://localhost:5000/calculation
+        name: http://localhost:5000/calculation
+        meta:
+          id: req_248a2097751246889daedb47f6e1c227
+          created: 1758181405262
+          modified: 1758181441526
+          isPrivate: false
+          description: ""
+          sortKey: -1758181405262
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: products
+    meta:
+      id: fld_87ccd355ef4c48b4b73017812d1da616
+      created: 1758189792687
+      modified: 1758189792687
+      sortKey: -1758189792687
+      description: ""
+    children:
+      - url: http://localhost:5000/product/3
+        name: http://localhost:5000/product
+        meta:
+          id: req_d058961c31644358b53fd2dcd9a06abd
+          created: 1758189806218
+          modified: 1758760071325
+          isPrivate: false
+          description: ""
+          sortKey: -1758189806218
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            
+            {
+            	"title":"nyama1",
+            	"content":"well well",
+            	"price":2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_962437bdad144596a724126bfd146970
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoianVtYUBnbWFpbC5jb20iLCJpYXQiOjE3NTgyMjMxNTMsImV4cCI6MTc1ODIyNjc1M30.V6AncT8Jp1hItVGT9Vxh0x5kGExw3bPSR4_YfkQzvRg
+            id: pair_393627bff4c24aa294b38a80b13ad6bf
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/product/?skip=2
+        name: http://localhost:5000/product/?skip=2
+        meta:
+          id: req_85fb0c25353a4842a9f1e6b8f0f15f73
+          created: 1758192638069
+          modified: 1758222825921
+          isPrivate: false
+          description: ""
+          sortKey: -1758192638069
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/product/search?input=banan
+        name: http://localhost:5000/product/search
+        meta:
+          id: req_16cfd2ca96144bed8b7c3bc8b8a1800a
+          created: 1758222826871
+          modified: 1758224989147
+          isPrivate: false
+          description: ""
+          sortKey: -1758222826871
+        method: GET
+        headers:
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoianVtYUBnbWFpbC5jb20iLCJpYXQiOjE3NTgyMjMxNTMsImV4cCI6MTc1ODIyNjc1M30.V6AncT8Jp1hItVGT9Vxh0x5kGExw3bPSR4_YfkQzvRg
+            id: pair_c577269994154e4996bf96fca6df5273
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: carts
+    meta:
+      id: fld_531e39e6f473480da51259dfefc8015b
+      created: 1758200196464
+      modified: 1758200196464
+      sortKey: -1758200196464
+      description: ""
+    children:
+      - url: http://localhost:5000/cart/
+        name: http://localhost:5000/cart
+        meta:
+          id: req_bb7a604fc6d34f4bb7a205422fb8e9c9
+          created: 1758200200153
+          modified: 1758222818604
+          isPrivate: false
+          description: ""
+          sortKey: -1758200200153
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"userId":2,
+            	"productId":2,
+            	"quantity":201
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_0f034aa04f6e4f3680b8b165a63c9ea9
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoianVtYUBnbWFpbC5jb20iLCJpYXQiOjE3NTgyMDA5MDEsImV4cCI6MTc1ODIwNDUwMX0.jkoDKnTIVFlu4cAuyDczBCqSCf082jxd_11gP9yG9oU
+            id: pair_7fb50338e1614235855f8739c8ad6f04
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_5eae75c1e9d2157c0db12f477f7880d4a5961177
+    created: 1758134234964
+    modified: 1758134234964
+environments:
+  name: Base Environment
+  meta:
+    id: env_5eae75c1e9d2157c0db12f477f7880d4a5961177
+    created: 1758134234962
+    modified: 1758134234962
+    isPrivate: false
