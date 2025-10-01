@@ -13,22 +13,29 @@ class Attendances {
   String? endTime;
   String? day;
   String? staffName;
+  int? classYear;
+  int? programId;
+  String? classLevel;
 
-  Attendances(
-      {this.attendenceId,
-        this.sessionId,
-        this.studentReg,
-        this.studentSign,
-        this.deviceId,
-        this.createdAt,
-        this.status,
-        this.deviceName,
-        this.studentName,
-        this.courseName,
-        this.startTime,
-        this.endTime,
-        this.day,
-        this.staffName});
+  Attendances({
+    this.attendenceId,
+    this.sessionId,
+    this.studentReg,
+    this.studentSign,
+    this.deviceId,
+    this.createdAt,
+    this.status,
+    this.deviceName,
+    this.studentName,
+    this.courseName,
+    this.startTime,
+    this.endTime,
+    this.day,
+    this.staffName,
+    this.classYear,
+    this.programId,
+    this.classLevel,
+  });
 
   Attendances.fromJson(Map<String, dynamic> json) {
     attendenceId = json['attendence_id'];
@@ -45,24 +52,30 @@ class Attendances {
     endTime = json['end_time'];
     day = json['day'];
     staffName = json['staff_name'];
+    classYear = json['class_year'];
+    programId = json['program_id'];
+    classLevel = json['class_level'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['attendence_id'] = this.attendenceId;
-    data['session_id'] = this.sessionId;
-    data['student_reg'] = this.studentReg;
-    data['student_sign'] = this.studentSign;
-    data['device_id'] = this.deviceId;
-    data['created_at'] = this.createdAt;
-    data['status'] = this.status;
-    data['device_name'] = this.deviceName;
-    data['student_name'] = this.studentName;
-    data['course_name'] = this.courseName;
-    data['start_time'] = this.startTime;
-    data['end_time'] = this.endTime;
-    data['day'] = this.day;
-    data['staff_name'] = this.staffName;
+    final Map<String, dynamic> data = {};
+    data['attendence_id'] = attendenceId;
+    data['session_id'] = sessionId;
+    data['student_reg'] = studentReg;
+    data['student_sign'] = studentSign;
+    data['device_id'] = deviceId;
+    data['created_at'] = createdAt;
+    data['status'] = status;
+    data['device_name'] = deviceName;
+    data['student_name'] = studentName;
+    data['course_name'] = courseName;
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
+    data['day'] = day;
+    data['staff_name'] = staffName;
+    data['class_year'] = classYear;
+    data['program_id'] = programId;
+    data['class_level'] = classLevel;
     return data;
   }
 }

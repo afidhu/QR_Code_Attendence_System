@@ -56,7 +56,6 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                 ),
               ),
             ),
-
             Text(qrcodeResult),
             const SizedBox(height: 20),
             ElevatedButton(

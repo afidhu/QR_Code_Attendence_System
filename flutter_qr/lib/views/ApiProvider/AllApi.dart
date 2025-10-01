@@ -10,4 +10,5 @@ class ApiUrls {
   static const String sessionCreate ='$baseUrl/session';
   static const String assignAttendance ='$baseUrl/session/studentconfirmsession';
   static const String student = '$baseUrl/student';
+  static const String studentattendences = '$baseUrl/studentattendence';
 }

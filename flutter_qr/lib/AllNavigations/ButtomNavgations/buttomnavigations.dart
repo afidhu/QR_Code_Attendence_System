@@ -27,7 +27,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
         Get.to(HomePage());
         break;
       case 1:
-        Get.to(HomePage());
+        Get.to(ScanQrCode());
         // Get.to(CreateQr());
         break;
       default:

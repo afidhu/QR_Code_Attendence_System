@@ -23,6 +23,8 @@ class AttendancesController extends GetxController{
   Future<bool> assignAttendance (session_id,) async{
     try{
       int sessionID = int.tryParse(session_id) ?? 0;
+      int? classYears =int.tryParse(authController.student_year.value);
+      int? program_Ids =int.tryParse(authController.student_program_id.value);
       print( 'controllergetSession id : $session_id');
       Attendances attendance =Attendances(
         sessionId: sessionID,
@@ -30,12 +32,18 @@ class AttendancesController extends GetxController{
         deviceId: deviceInfo.device_Unique_Id.value,
         deviceName: deviceInfo.device_manufature.value,
         studentSign:controllerSign.text ,
+        classLevel: authController.student_level.value,
+        classYear: classYears?.toInt(),
+        programId: program_Ids!.toInt(),
       );
       final url  =Uri.parse(ApiUrls.assignAttendance);
       var response =await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(attendance.toJson()),
       );
+      print("attendance ${attendance.classYear.runtimeType}");
+      print("attendance ${attendance.classLevel.runtimeType}");
+      print("attendance ${attendance.programId.runtimeType}");
 
       if(response.statusCode ==200 || response.statusCode==201){
         print('data are : ${response.body}');

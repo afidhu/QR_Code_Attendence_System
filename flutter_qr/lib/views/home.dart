@@ -12,6 +12,7 @@ import 'auth/profile.dart';
 import 'controller/authcontroller.dart';
 import 'controller/sessionscontroller.dart';
 import 'controller/timetablecontroller.dart';
+import 'custumUI/go_to_scannUi.dart';
 import 'custumUI/materialButton.dart';
 
 class HomePage extends StatefulWidget {
@@ -320,18 +321,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               )
-            : Column(
-                children: [
-                  Text('data'),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => ScanQrCode());
-                    },
-                    child: Text('Go to Scan'),
-                  ),
-                ],
-              ),
+            : ButtonScan(),
       ),
       drawer: MyDrawerNavigation(),
       bottomNavigationBar:MyBottomNavigation()
