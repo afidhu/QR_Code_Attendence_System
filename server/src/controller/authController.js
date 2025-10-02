@@ -50,7 +50,7 @@ exports.studentRequestRegister = async (req, resp) => {
         if (!student_password || !student_reg) {
             return resp.status(403).json('All fields Required')
         }
-        const checkIfStudentExist = await pool.query("SELECT EXISTS(SELECT student_reg FROM students WHERE student_reg =$1)", [student_reg]);
+        const checkIfStudentExist = await pool.query("SELECT EXISTS(SELECT sAttendancestudent_reg FROM students WHERE student_reg =$1)", [student_reg]);
         if (checkIfStudentExist.rows[0].exists) {
             const studentUpdateSetPassword = await pool.query("UPDATE students SET student_password =$1  WHERE student_reg =$2", [student_password, student_reg]);
             if (studentUpdateSetPassword.rowCount.length != 0) {

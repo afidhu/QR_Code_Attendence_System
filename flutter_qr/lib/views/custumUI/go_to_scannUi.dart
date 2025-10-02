@@ -12,16 +12,15 @@ class ButtonScan extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       margin: EdgeInsets.all(20),
+      height: double.infinity,
       child: Column(
         children: [
           SizedBox(
-            height: 100,
-            child: Text('Student Attendance'),
+            child: Text('Student Attendance', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
           ),
-         SizedBox(
-           height: 300,
-           child: StudentAttendanceList(),
-         ),
+
+         StudentAttendanceList(),
+
           // ElevatedButton(
           //   style: ButtonStyle(
           //    backgroundColor: WidgetStatePropertyAll(Colors.deepPurpleAccent)

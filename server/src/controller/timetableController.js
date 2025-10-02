@@ -27,7 +27,7 @@ exports.getalltimetable = async (req, resp) => {
 //////////// get  Time Table BY ID
 exports.getalltimetableSingle = async (req, resp) => {
     try {
-           const{timetable_id} = req.params;
+        const { timetable_id } = req.params;
         const alltimetable = await pool.query('SELECT*FROM timetable WHERE timetable_id =$1 ', [timetable_id])
 
         if (alltimetable.rowCount > 0) {
@@ -49,9 +49,9 @@ exports.getalltimetableSingle = async (req, resp) => {
 
 exports.addTimetable = async (req, resp) => {
     try {
-        const { course_id, day, date, start_time, end_time, lecture_id, class_year ,program_id ,class_level} = req.body
+        const { course_id, day, date, start_time, end_time, lecture_id, class_year, program_id, class_level } = req.body
         const addquery = await pool.query(`INSERT INTO timetable (course_id, day, date, start_time, end_time, lecture_id, class_year ,program_id ,class_level)
-             VALUES($1, $2, $3, $4, $5, $6, $7,$8,$9)  RETURNING *`, [course_id, day, date, start_time, end_time, lecture_id, class_year ,program_id ,class_level]);
+             VALUES($1, $2, $3, $4, $5, $6, $7,$8,$9)  RETURNING *`, [course_id, day, date, start_time, end_time, lecture_id, class_year, program_id, class_level]);
         if (addquery) {
             return resp.status(201).json({ status: 'success', data: addquery.rows[0] });
         } else {
@@ -104,26 +104,23 @@ exports.CrFiltertimetable = async (req, resp) => {
             day = day && day.trim() !== "" ? day : null;
             date = date && date.trim() !== "" ? date : null;
 
-            const query = `
-                            SELECT 
-                                t.timetable_id,
-                                t.day,
-                                t.date,
-                                t.start_time,
-                                t.end_time,
-                                t.class_year,
-                                t.class_level,
-                                t.program_id,
-                                t.is_sessioned,
-                                p.program_name
-                            FROM timetable t
-                            INNER JOIN programs p ON t.program_id = p.program_id
-                            WHERE t.program_id = $1
-                            AND t.class_year = $2
-                            AND t.class_level = $3
-                            AND ($4::text IS NULL OR t.day = $4)
-                            AND ($5::date IS NULL OR DATE(t.date) = $5)
-                        `;
+            const query = `SELECT 
+                        t.*,
+                        p.program_name,
+                        c.course_name,
+                        c.course_code,
+                        s.staff_name
+                    FROM timetable t
+                    INNER JOIN programs p ON t.program_id = p.program_id
+                    LEFT JOIN courses c ON t.course_id = c.course_id
+                    LEFT JOIN staff s ON t.lecture_id = s.staff_id
+                    WHERE t.program_id = $1
+                    AND t.class_year = $2
+                    AND t.class_level = $3
+                    AND ($4::text IS NULL OR t.day = $4)
+                    AND ($5::date IS NULL OR DATE(t.date) = $5);
+
+                `;
 
             const filtertimetable = await pool.query(query, [
                 program_id,
@@ -146,19 +143,20 @@ exports.CrFiltertimetable = async (req, resp) => {
 
 ///////////HERE bellow update Timetable at field , is_sessioned=true///////////
 
-exports.updateTimetable_is_sessioned = async(req, resp)=>{
+exports.updateTimetable_is_sessioned = async (req, resp) => {
     try {
-        const{timetable_id} = req.params;
-        const updateTableresult = await pool.query("UPDATE timetable SET is_sessioned=true WHERE timetable_id =$1 RETURNING *",[timetable_id])
-      
-        if(updateTableresult){qr_web
-        return resp.status(200).json(updateTableresult.rows[0])
+        const { timetable_id } = req.params;
+        const updateTableresult = await pool.query("UPDATE timetable SET is_sessioned=true WHERE timetable_id =$1 RETURNING *", [timetable_id])
+
+        if (updateTableresult) {
+            qr_web
+            return resp.status(200).json(updateTableresult.rows[0])
         }
-        else{
+        else {
             return resp.status(400).json('Fail to update')
         }
     } catch (error) {
-        return resp.status(400).json({msg:'internal error', error:error.message})
-        
+        return resp.status(400).json({ msg: 'internal error', error: error.message })
+
     }
 }

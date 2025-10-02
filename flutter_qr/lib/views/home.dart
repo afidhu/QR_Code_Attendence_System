@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../AllNavigations/ButtomNavgations/buttomnavigations.dart';
 import '../AllNavigations/Drawers/alldrawer.dart';
@@ -200,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              '${index + 1}. IS012 ',
+                                              '${index + 1}. ${data.courseCode?.toUpperCase()} ',
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -209,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                'DS',
+                                                data.courseName.toString().toUpperCase(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontSize: 15,
@@ -223,8 +224,17 @@ class _HomePageState extends State<HomePage> {
                                         ),
 
                                         const SizedBox(height: 10),
+                                        Text(".INSTRUCTOR:${ data.staffName.toString().toUpperCase()}"
+                                         ,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.deepPurpleAccent,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
                                         Text(
-                                          data.date.toString(),
+                                          DateFormat('dd MMM yyyy').format(DateTime.parse(data.date!)),
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
