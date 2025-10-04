@@ -11,6 +11,7 @@ app.use(cors())
 app.use(express.json())
 
 
+app.use('/table-session', require('./src/routes/updateTableDelSeiionRouter.js'));
 app.use('/studentattendence', require('./src/routes/studentAttendence.js'));
 app.use('/attendence', require('./src/routes/attendenceRoute'));
 app.use('/staff', require('./src/routes/staffRouter.js'));

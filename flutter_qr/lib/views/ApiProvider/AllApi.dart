@@ -7,7 +7,7 @@ class ApiUrls {
 
   static const String timetable ='$baseUrl/timetable';
   static const String timetableByCr ='$baseUrl/timetable/filter';
-  static const String sessionCreate ='$baseUrl/session';
+  static const String sessions ='$baseUrl/session';
   static const String assignAttendance ='$baseUrl/session/studentconfirmsession';
   static const String student = '$baseUrl/student';
   static const String studentattendences = '$baseUrl/studentattendence';

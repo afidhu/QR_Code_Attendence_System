@@ -3,10 +3,10 @@ const pool = require("../connection/db")
 
 
 exports.getallsetions = async (req, resp) => {
-    const allsesions = await pool.query('SELECT*FROM sessions');
+    const allsesions = await pool.query('SELECT*FROM sessions ORDER by created_at DESC ');
 
     if (allsesions.rowCount > 0) {
-        return resp.status(200).json({ status: 'success', data: allsesions.rows })
+        return resp.status(200).json(allsesions.rows)
     }
 }
 

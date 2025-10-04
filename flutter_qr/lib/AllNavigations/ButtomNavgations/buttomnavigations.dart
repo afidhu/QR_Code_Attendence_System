@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../views/QR_Screen/create_Qr.dart';
 import '../../views/QR_Screen/scan_data.dart';
+import '../../views/controller/authcontroller.dart';
+import '../../views/pages/sessions.dart';
 
 class MyBottomNavigation extends StatefulWidget {
   const MyBottomNavigation({super.key});
@@ -18,6 +20,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
   //   HomePage(),
   //   ScanQrCode(),
   // ];
+  AuthController authController = Get.put(AuthController());
 
   var currentIndex = 0;
 
@@ -27,7 +30,8 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
         Get.to(HomePage());
         break;
       case 1:
-        Get.to(ScanQrCode());
+        authController.student_role.value == 'CR'?  Get.to(()=>SessionsList()):  Get.to(ScanQrCode());
+      
         // Get.to(CreateQr());
         break;
       default:
@@ -46,15 +50,22 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
           Navigations();
         });
       },
-        items: const [
+        items:[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+
+          authController.student_role.value == 'CR'?  BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Sessions',
+          ): BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_scanner),
             label: 'Scan',
           ),
+
+
+
         ],
     );
   }

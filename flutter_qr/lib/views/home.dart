@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
 
                                         const SizedBox(height: 10),
-                                        Text(".INSTRUCTOR:${ data.staffName.toString().toUpperCase()}"
+                                        Text(".INSTRUCTOR:${data.timetableId} ${ data.staffName.toString().toUpperCase()}"
                                          ,
                                           style: TextStyle(
                                             fontSize: 16,
@@ -267,7 +267,7 @@ class _HomePageState extends State<HomePage> {
 
                                         const SizedBox(height: 15),
 
-                                       data.isSessioned ==true ? MyMaterialButton() :
+                                       data.isSessioned ==true ? MyMaterialButton(tametable_id: data.timetableId!.toInt(),) :
                                        Row(
                                          children: [
                                            Expanded(
