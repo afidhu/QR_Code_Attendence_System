@@ -7,6 +7,7 @@ const API = {
     courses:`${BaseUrl}/course`,
     programs:`${BaseUrl}/program`,
     timetables:`${BaseUrl}/timetable`,
+    students:`${BaseUrl}/student`,
 };
 
 export default API;

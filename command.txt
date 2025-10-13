@@ -1,7 +1,7 @@
 echo "# QR_Code_Attendence_System" >> README.md
 git init
 git add .
-git commit -m "first add UL4 and Backend"
+git commit -m "first add UL4 and Backend2"
 git branch -M main
 git remote add origin https://github.com/afidhu/QR_Code_Attendence_System.git
 git push -u origin main

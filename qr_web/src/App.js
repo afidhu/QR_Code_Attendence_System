@@ -8,6 +8,9 @@ import IsmTmetable from './components/pages/timetable/IsmTmetable.js';
 import Staff from './src2/components/pages/staffs/Staff.js';
 import IsmIndex from './components/pages/students/IsmIndex.js';
 import Csnindex from './components/pages/students/Csnindex.js';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import API from './components/Api/ApiProvider.js';
 // import Login from '../components/auth/Login.js';
 // import Register from '../components/auth/Register.js';
 // import MainDashboard from '../components/pages/MainDashboard.js';
@@ -16,20 +19,45 @@ import Csnindex from './components/pages/students/Csnindex.js';
 // import Csnindex from '../components/pages/students/csn/Csnindex.js';
 // import IsmTmetable from '../components/pages/timetable/IsmTmetable.js';
 function App() {
+  const [progrmas, setProgrma] = useState([])
+
+  const allProgrmas = async () => {
+    await axios.get(API.programs)
+      .then((resp) => {
+        setProgrma(resp.data.data)
+        console.log('prohram:', resp.data.data)
+      })
+      .catch((e) => {
+        console.log('error is :', e.message)
+      })
+  }
+
+  useEffect(() => {
+    allProgrmas()
+  }, [])
+
   return (
 
-     <BrowserRouter>
+    <BrowserRouter>
 
       {/* Routes */}
       <Routes>
         <Route path="/" element={<MasterLayout />} >
-        {/* <Route path="/login" element={<Login/>} />
+          {/* <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register />} /> */}
-        <Route path="/dashboard" element={<MainDashboard />} />
-        <Route path="/staff" element={<Staff/>} />
-        <Route path="/ism-index" element={<IsmIndex/>} />
-        <Route path="/csn-index" element={<Csnindex/>} />
-        <Route path="/ism-timetable" element={<IsmTmetable/>} />
+          <Route path="/dashboard" element={<MainDashboard />} />
+          <Route path="/staff" element={<Staff />} />
+          {
+            progrmas.map((item, index) => {
+              return (
+                <>
+                  <Route path={`/${item.program_name}`} element={<IsmIndex />} />
+                  {/* <Route path="/csn-index" element={<Csnindex/>} /> */}
+                </>
+              )
+            })
+          }
+          <Route path="/ism-timetable" element={<IsmTmetable />} />
         </Route>
       </Routes>
     </BrowserRouter>

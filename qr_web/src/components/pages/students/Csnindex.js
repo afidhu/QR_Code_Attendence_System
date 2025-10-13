@@ -1,6 +1,7 @@
 import React from 'react'
 import DateTime from '../../custumUI/DateTime.js'
 
+
 export default function Csnindex() {
   return (
     <div>
@@ -25,7 +26,7 @@ export default function Csnindex() {
                             <table class="table mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">#dfghj</th>
                                         <th scope="col">First</th>
                                         <th scope="col">Last</th>
                                         <th scope="col">Handle</th>
@@ -38,22 +39,7 @@ export default function Csnindex() {
                                         <th scope="col">Handle</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                    </tr>
-
-                                </tbody>
+                               {/* <StudentList/> */}
                             </table>
                         </div>
                     </div>
