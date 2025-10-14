@@ -1,11 +1,7 @@
-import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_qr/views/ApiProvider/AllApi.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
-import '../../model/sessionModel.dart';
 
 class UpdateTimetableController extends GetxController {
 
@@ -14,7 +10,7 @@ class UpdateTimetableController extends GetxController {
   Future<void> updateTimetable(int timetableId) async {
     try {
       print('object');
-      final url = Uri.parse('${ApiUrls.timetable}/$timetableId');
+      final url = Uri.parse('${ApiUrls.table_session}/$timetableId');
       var response = await http.get(url);
       if (response.statusCode == 200) {
         isUpdated.value =true;

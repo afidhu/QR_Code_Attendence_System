@@ -13,7 +13,6 @@ class AuthController extends GetxController{
   TextEditingController controllerStudentReg =TextEditingController();
   TextEditingController controllerStudentPsw =TextEditingController();
 
-
   Future myBottomSheent() async{
     Get.bottomSheet(
         Container(
@@ -105,8 +104,8 @@ var student_program_id =''.obs;
 
     try{
       StudentsAuth student =StudentsAuth(
-        studentPassword: controllerStudentPsw.text,
-        studentReg: controllerStudentReg.text,
+        studentPassword: controllerStudentPsw.text.trim(),
+        studentReg: controllerStudentReg.text.trim(),
         // studentPassword: 'asha123',
         // studentReg: '30773/T.2023',
       );

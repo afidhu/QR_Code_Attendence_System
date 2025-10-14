@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/views/auth/login.dart';
 import 'package:flutter_qr/views/home.dart';
+import 'package:flutter_qr/views/pages/printtableView.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'AllNavigations/ButtomNavgations/buttomnavigations.dart';
@@ -36,8 +37,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // home:BottomNavigation()
-      home: LoginScreen(),
-
+      // home: LoginScreen(),
+      home: PrintTableview(),
     );
   }
 }

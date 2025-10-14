@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/attendenceModel.dart';
+import '../../model/attendenceperCourse.dart';
 import '../ApiProvider/AllApi.dart';
 import 'authcontroller.dart';
 import 'getDeviceInfo.dart';
@@ -85,4 +86,51 @@ class AttendancesController extends GetxController{
       throw Exception('error at : $e');
     } finally{}
   }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getAttendencePerCourse();
+    getAttendence();
+  }
+
+
+  var attendanceData =<Attendances>[].obs;
+  Future<void> getAttendence()async{
+    try{
+      final url = Uri.parse(ApiUrls.course_attendence);
+      var response = await http.get(url);
+      if(response.statusCode == 200 || response.statusCode ==201){
+        print('data are :${response.body}');
+        List<dynamic> jsonList =jsonDecode(response.body);
+        List<Attendances> attendanceList =jsonList.map((json)=>Attendances.fromJson(json)).toList();
+        attendanceData.assignAll(attendanceList);
+      }
+    } catch(e){
+      print('error at : $e');
+    } finally{}
+  }
+
+
+
+
+  var attendancePerCourse =<AttendancePerCourse>[].obs;
+  Future<void> getAttendencePerCourse()async{
+   try{
+     final url = Uri.parse('${ApiUrls.course_attendence}/ds');
+     var response = await http.get(url);
+     if(response.statusCode == 200 || response.statusCode ==201){
+       print('data are :${response.body}');
+       List<dynamic> jsonList =jsonDecode(response.body);
+       List<AttendancePerCourse> attendancePerCourseList =jsonList.map((json)=>AttendancePerCourse.fromJson(json)).toList();
+       attendancePerCourse.assignAll(attendancePerCourseList);
+     }
+   } catch(e){
+     print('error at : $e');
+   } finally{}
+  }
+
+
+
 }

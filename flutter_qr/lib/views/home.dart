@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
-
 import '../AllNavigations/ButtomNavgations/buttomnavigations.dart';
 import '../AllNavigations/Drawers/alldrawer.dart';
 import 'QR_Screen/create_Qr.dart';
-import 'QR_Screen/scan_data.dart';
 import 'auth/profile.dart';
 import 'controller/authcontroller.dart';
 import 'controller/sessionscontroller.dart';
@@ -93,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-      body: Container(
+      body: Obx(()=> Container(
         child: authController.student_role.value.toString() == 'CR'
             ? Column(
                 children: [
@@ -166,8 +164,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                    child: Obx(
-                      () => SizedBox(
+                    child:Obx(()=>  SizedBox(
                         width: double.infinity,
                         height: Get.height * 0.7,
                         child: RefreshIndicator(
@@ -268,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                                         const SizedBox(height: 15),
 
                                        data.isSessioned ==true ? MyMaterialButton(tametable_id: data.timetableId!.toInt(),) :
-                                       Row(
+                                     Row(
                                          children: [
                                            Expanded(
                                              child: ElevatedButton(
@@ -300,15 +297,15 @@ class _HomePageState extends State<HomePage> {
                                                  Icons.qr_code,
                                                  size: 18,
                                                ),
-                                               label: Text("Present"),
+                                               label:Text("Present"),
                                                style: ElevatedButton.styleFrom(
                                                  backgroundColor: Colors.blue,
                                                  padding: EdgeInsets.symmetric(
                                                    vertical: 12,
                                                  ),
                                                ),
-                                             ),
-                                           ),
+                                             )),
+
                                          ],
                                        ),
 
@@ -322,16 +319,23 @@ class _HomePageState extends State<HomePage> {
                           ),
 
                           onRefresh: () async {
-                            setState(() {});
-                            return;
+                          timetableController.getTimetablePerCr(authController.student_program_id.value,
+                            authController.student_year.value,
+                            authController.student_level.value,'',''
+                          );
+                          // setState(() {
+                          //
+                          // });
+                          print('object');
                           },
                         ),
                       ),
-                    ),
-                  ),
+                    )),
+
                 ],
               )
             : ButtonScan(),
+      )
       ),
       drawer: MyDrawerNavigation(),
       bottomNavigationBar:MyBottomNavigation()

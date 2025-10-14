@@ -19,6 +19,7 @@ class SessionCard extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
+          onTap: (){},
           leading: CircleAvatar(child: Text('${allsessionsIndex+1}'),),
           title: Text('Date:${DateFormat('dd MMM yyyy').format(DateTime.parse(allsessions.createdAt.toString()))}', style: TextStyle(fontWeight: FontWeight.bold),),
           subtitle: Column(
@@ -50,7 +51,7 @@ class SessionCard extends StatelessWidget {
               )
             ],
           ),
-          trailing: Icon(Icons.update),
+          trailing: Icon(Icons.print,color: Colors.cyan,),
         ),
       ),
     );
