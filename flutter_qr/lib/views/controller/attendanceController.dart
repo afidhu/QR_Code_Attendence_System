@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../../model/attendenceModel.dart';
 import '../../model/attendenceperCourse.dart';
 import '../ApiProvider/AllApi.dart';
+import '../pages/printtableView.dart';
 import 'authcontroller.dart';
 import 'getDeviceInfo.dart';
 
@@ -91,7 +92,7 @@ class AttendancesController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getAttendencePerCourse();
+    // getAttendencePerCourse('ds');
     getAttendence();
   }
 
@@ -99,7 +100,8 @@ class AttendancesController extends GetxController{
   var attendanceData =<Attendances>[].obs;
   Future<void> getAttendence()async{
     try{
-      final url = Uri.parse(ApiUrls.course_attendence);
+      print('object');
+      final url = Uri.parse(ApiUrls.attendences);
       var response = await http.get(url);
       if(response.statusCode == 200 || response.statusCode ==201){
         print('data are :${response.body}');
@@ -116,15 +118,19 @@ class AttendancesController extends GetxController{
 
 
   var attendancePerCourse =<AttendancePerCourse>[].obs;
-  Future<void> getAttendencePerCourse()async{
+  Future<void> getAttendencePerCourse(String courseName)async{
    try{
-     final url = Uri.parse('${ApiUrls.course_attendence}/ds');
+     final url = Uri.parse('${ApiUrls.course_attendence}/$courseName');
      var response = await http.get(url);
      if(response.statusCode == 200 || response.statusCode ==201){
        print('data are :${response.body}');
        List<dynamic> jsonList =jsonDecode(response.body);
        List<AttendancePerCourse> attendancePerCourseList =jsonList.map((json)=>AttendancePerCourse.fromJson(json)).toList();
        attendancePerCourse.assignAll(attendancePerCourseList);
+       if(attendancePerCourseList.isNotEmpty){
+         Get.to(()=>PrintTableview(),fullscreenDialog: true,curve: Curves.bounceOut,duration: Duration(seconds: 2));
+       }
+       // await Get.to(()=>PrintTableview(),fullscreenDialog: true,curve: Curves.bounceOut,duration: Duration(seconds: 2) );
      }
    } catch(e){
      print('error at : $e');

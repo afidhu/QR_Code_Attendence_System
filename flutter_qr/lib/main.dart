@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/views/auth/login.dart';
 import 'package:flutter_qr/views/home.dart';
+import 'package:flutter_qr/views/pages/attendences.dart';
 import 'package:flutter_qr/views/pages/printtableView.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
       ),
       // home:BottomNavigation()
       // home: LoginScreen(),
-      home: PrintTableview(),
+      // home: PrintTableview(),
+      home: AttendancesList(),
     );
   }
 }

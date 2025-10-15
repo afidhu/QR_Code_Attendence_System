@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
+import '../../model/attendenceModel.dart';
 import '../controller/attendanceController.dart';
 // import 'package:pdf_google_fonts/pdf_google_fonts.dart'; // Make sure to add this in pubspec.yaml
 
@@ -16,11 +17,10 @@ class PrintTableview extends StatefulWidget {
 }
 
 class _PrintTableviewState extends State<PrintTableview> {
-  AttendancesController attendancesController = Get.put(
-    AttendancesController(),
-  );
+  // AttendancesController attendancesController = Get.put(AttendancesController(),);
   AttendancesController attendanceController = Get.put(AttendancesController());
 
+  // Attendances attendancesObject =Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +68,7 @@ class _PrintTableviewState extends State<PrintTableview> {
                     _cell(issue.endTime.toString(), font),
                   ],
                 );
-              }).toList(),
+              }),
               // You can add more TableRow entries here
             ],
           );
