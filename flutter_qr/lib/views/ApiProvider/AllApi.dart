@@ -1,6 +1,6 @@
 class ApiUrls {
   // Base URL
-  static const String baseUrl = 'http://192.168.5.48:5000';
+  static const String baseUrl = 'http://172.16.93.138:5000';
   // static const String baseUrl = 'http://http://10.0.2.2:5000'; //THIS IS EMULATOR default API
 
 

@@ -17,7 +17,9 @@ class _AttendancesListState extends State<AttendancesList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Obx(()=>Text(attendancesController.attendanceData.length.toString())),
+      appBar: AppBar(
+        title: Text('Attendances Lists'),
+        centerTitle: true,
       ),
       body: Scrollbar(
         trackVisibility: true,
@@ -33,7 +35,7 @@ class _AttendancesListState extends State<AttendancesList> {
         child: Container(
           margin: EdgeInsets.all(10),
           color: Colors.cyan,
-          child: GridView.builder(
+          child: Obx(()=> GridView.builder(
             physics: BouncingScrollPhysics(),
             itemCount: attendancesController.attendanceData.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -43,9 +45,9 @@ class _AttendancesListState extends State<AttendancesList> {
               ),
               itemBuilder: (context,index){
               var data =attendancesController.attendanceData[index];
-                return AttendanceCard(attendancesList: data,);
+                return  AttendanceCard(attendancesList: data,);
               }
-          ),
+          )),
         ),
       ),
     );

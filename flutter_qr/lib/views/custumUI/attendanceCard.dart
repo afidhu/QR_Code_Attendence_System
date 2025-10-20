@@ -15,11 +15,11 @@ class AttendanceCard extends StatelessWidget {
     AttendancesController attendancesController =Get.put(AttendancesController());
     final dentistAppointment = DateTime(2017, 9, 7, 17, 30);
     final mark = DateTime.timestamp();
-    return Padding(
+    return  Padding(
       padding: const EdgeInsets.all(2.0),
       child: Card(
         color: Colors.grey,
-        child: Column(
+        child:  Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

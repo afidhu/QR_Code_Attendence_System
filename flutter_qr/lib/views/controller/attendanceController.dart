@@ -109,6 +109,7 @@ class AttendancesController extends GetxController{
         List<Attendances> attendanceList =jsonList.map((json)=>Attendances.fromJson(json)).toList();
         attendanceData.assignAll(attendanceList);
       }
+
     } catch(e){
       print('error at : $e');
     } finally{}
