@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../views/QR_Screen/create_Qr.dart';
 import '../../views/QR_Screen/scan_data.dart';
+import '../../views/auth/profile.dart';
 import '../../views/controller/authcontroller.dart';
 import '../../views/pages/attendences.dart';
 import '../../views/pages/sessions.dart';
@@ -17,87 +18,89 @@ class MyBottomNavigation extends StatefulWidget {
 }
 
 class _MyBottomNavigationState extends State<MyBottomNavigation> {
-
-  // final List<Widget> allBottomNav = [
-  //   HomePage(),
-  //   ScanQrCode(),
-  // ];
   AuthController authController = Get.put(AuthController());
-
-  var currentIndex = 0;
-
-  void Navigations() {
-    switch (currentIndex) {
-      case 0:
-        print(currentIndex);
-        Get.to(HomePage());
-        break;
-
-      case 1:
-        authController.student_role.value == 'CR'? Get.to(() => AttendancesList()) : Get.to(() => StudentHistory());
-        break;
-      case 2:
-        print(currentIndex);
-        authController.student_role.value == 'CR'?  Get.to(()=>SessionsList()):  Get.to(ScanQrCode());
-
-        // Get.to(CreateQr());
-        break;
-      default:
-        print(currentIndex);
-        Get.to(HomePage());
-    }
-  }
-
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      showSelectedLabels: true,
-      type: BottomNavigationBarType.fixed,
-      elevation: 0,
-      iconSize: 30,
-      selectedFontSize: 12,
-      unselectedFontSize: 12,
-      selectedIconTheme: IconThemeData(size: 30),
-      unselectedIconTheme: IconThemeData(size: 30),
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-      currentIndex: currentIndex,
-      onTap: (val) {
-        setState(() {
-          currentIndex = val;
-          Navigations();
-        });
-      },
-        items:[
-          BottomNavigationBarItem(
+
+    final pages =  [
+      HomePage(),
+
+      authController.student_role.value == 'CR'
+          ? AttendancesList()
+          : StudentHistory(),
+      authController.student_role.value == 'CR'
+          ? SessionsList()
+          : ScanQrCode(),
+    ];
+
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Obx(() => Text('Welcome:${authController.student_name}')),
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //       bottomLeft: Radius.circular(20),
+      //       bottomRight: Radius.circular(20),
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   actionsPadding: EdgeInsets.all(20),
+      //   backgroundColor: Colors.orange,
+      //   actions: [
+      //     PopupMenuButton(
+      //       child: Icon(Icons.account_circle_sharp),
+      //       onSelected: (val) {
+      //         if(val =='profile'){
+      //           Get.to(()=>Profile());
+      //         }
+      //         else{
+      //           authController.logout();
+      //         }
+      //       },
+      //       itemBuilder: (context) => [
+      //         PopupMenuItem(value: 'logout', child: Text('Logout')),
+      //         PopupMenuItem(value: 'profile', child: Text('Profile')),
+      //       ],
+      //     ),
+      //   ],
+      // ),
+
+    body:pages[currentIndex],
+
+      bottomNavigationBar:  Obx(()=> BottomNavigationBar(
+        // backgroundColor: Colors.white,
+        // selectedItemColor: Colors.green,
+        // unselectedItemColor: Colors.grey,
+        // type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
+        items: [
+         BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-        authController.student_role.value == 'CR' ?
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_outlined),
-              label: 'Attendances',
-            ): BottomNavigationBarItem(
+          authController.student_role.value == 'CR'
+              ?  BottomNavigationBarItem(
             icon: Icon(Icons.list_alt_outlined),
+            label: 'Attendances',
+          )
+              :  BottomNavigationBarItem(
+            icon: Icon(Icons.history),
             label: 'Histories',
           ),
-
-          authController.student_role.value == 'CR'?  BottomNavigationBarItem(
+          authController.student_role.value == 'CR'
+              ?  BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Sessions',
-          ): BottomNavigationBarItem(
+          )
+              :  BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_scanner),
             label: 'Scan',
           ),
 
-
-
         ],
+      )),
     );
   }
 }
