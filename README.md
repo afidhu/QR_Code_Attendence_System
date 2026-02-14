@@ -32,7 +32,7 @@ This project is ideal for **universities, colleges, and schools** where class re
 ### 🔹 Welcome Screen
 The entry point of the application with a clean and simple user interface.
 
-![Welcome Screen](https://github.com/afidhu/QR_Code_Attendence_System/blob/main/Screenshot_20251116_113210.jpg)
+![Welcome Screens](https://github.com/afidhu/QR_Code_Attendence_System/blob/main/Screenshot_20251116_113210.jpg)
 
 ---
 
