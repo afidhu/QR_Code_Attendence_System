@@ -140,3 +140,5 @@ If you like this project:
 ---
 
 > _"Technology should make systems fair, fast, and transparent — this project aims to do exactly that."_
+
+now development activities has pause ⏸️ 
